@@ -30,7 +30,6 @@ export const FooterSection = styled.div`
   flex-direction: column;
   gap: ${theme.spacing(2)};
   text-decoration: none;
-
   
 
   @media (max-width: ${theme.breakpoints.tablet}) {
