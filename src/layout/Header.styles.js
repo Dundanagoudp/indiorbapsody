@@ -17,6 +17,16 @@ export const HeaderContainer = styled.div`
 export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: ${theme.breakpoints.tablet}) {
+    justify-content: center;
+  }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    justify-content: flex-start;
+    margin-left: ${theme.spacing(-5)};
+  }
+
     
 `;
 
