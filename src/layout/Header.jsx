@@ -13,6 +13,8 @@ import {
   MobileMenuContainer,
   MobileMenu,
   Overlay,
+  ButtonContainer,
+  HeaderButton,
 } from "./Header.styles";
 import Logo from "../assets/logo.jpg";
 
@@ -32,6 +34,11 @@ const Header = () => {
     }
   }, [location]);
 
+  // Function to handle navigation to external URLs
+  const handleNavigation = (url) => {
+    window.location.href = url;
+  };
+
   return (
     <>
       <HeaderContainer>
@@ -43,16 +50,44 @@ const Header = () => {
 
         <Nav>
           <NavItem active={activeTab === "Home"}>
-            <Link to="/" onClick={() => setActiveTab("Home")} style={{ textDecoration: "none" }}>
+            <Link
+              to="/"
+              onClick={() => setActiveTab("Home")}
+              style={{ textDecoration: "none" }}
+            >
               Home
             </Link>
           </NavItem>
           <NavItem active={activeTab === "About us"}>
-            <Link to="/about" onClick={() => setActiveTab("About us")} style={{ textDecoration: "none" }}>
+            <Link
+              to="/about"
+              onClick={() => setActiveTab("About us")}
+              style={{ textDecoration: "none" }}
+            >
               About us
             </Link>
           </NavItem>
         </Nav>
+
+        {/* Button Container */}
+        <ButtonContainer>
+          <HeaderButton
+            onClick={() =>
+              handleNavigation("https://salesdashboard.indigorhapsody.com/")
+            }
+          >
+            Login
+          </HeaderButton>
+          <HeaderButton
+            onClick={() =>
+              handleNavigation(
+                "https://salesdashboard.indigorhapsody.com/signup"
+              )
+            }
+          >
+            Sign Up
+          </HeaderButton>
+        </ButtonContainer>
 
         <MenuIcon onClick={toggleMenu}>
           <FiMenu size={28} />

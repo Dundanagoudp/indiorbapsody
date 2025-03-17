@@ -26,8 +26,6 @@ export const LogoContainer = styled.div`
     justify-content: flex-start;
     margin-left: ${theme.spacing(-5)};
   }
-
-    
 `;
 
 export const LogoImage = styled.img`
@@ -38,7 +36,26 @@ export const LogoImage = styled.img`
   @media (max-width: ${theme.breakpoints.mobile}) {
     width: ${theme.spacing(20)};
     height: ${theme.spacing(6)};
-    
+  }
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+`;
+
+export const HeaderButton = styled.button`
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
   }
 `;
 
@@ -57,13 +74,14 @@ export const NavItem = styled.div`
   cursor: pointer;
   padding-bottom: ${theme.spacing(0.5)};
   transition: border-bottom 0.3s ease;
-  border-bottom: ${({ active }) => (active ? `2px solid ${theme.colors.primary}` : "none")};
+  border-bottom: ${({ active }) =>
+    active ? `2px solid ${theme.colors.primary}` : "none"};
 `;
 
 export const MenuIcon = styled.div`
   display: none;
   cursor: pointer;
-  
+
   @media (max-width: ${theme.breakpoints.tablet}) {
     display: block;
   }
