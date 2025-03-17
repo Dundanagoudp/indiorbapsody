@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios"; // Import axios for making HTTP requests
+// import axios from "axios"; // Import axios for making HTTP requests
+const axios = window.axios;
+
 import {
   ContactContainer,
   ContactForm,
