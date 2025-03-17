@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   FooterContainer,
   FooterContent,
@@ -15,22 +15,39 @@ import {
 import Logo from "../assets/logo.jpg";
 import { LogoImage } from './Header.styles';
 
-
 const Footer = () => {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleSubmit = () => {
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    setError("");
+    // Handle newsletter submission logic here
+    alert("Newsletter subscribed successfully!");
+  };
+
   return (
     <FooterContainer>
       <FooterContent>
         <FooterSection>
           <LogoContainer>
-                    <LogoImage src={Logo} alt="Logo" />
-                  </LogoContainer>
+            <LogoImage src={Logo} alt="Logo" />
+          </LogoContainer>
         </FooterSection>
 
-        <FooterSection>
+        <FooterSection >
           <FooterHeading>Quick Links</FooterHeading>
           <FooterLink href="/about">About us</FooterLink>
           <FooterLink href="/policies">Policies</FooterLink>
-          {/* <FooterLink href="/delete-user">Delete User</FooterLink> */}
+          <FooterLink href="/delete-user">Delete User</FooterLink>
         </FooterSection>
 
         <FooterSection>
@@ -41,8 +58,14 @@ const Footer = () => {
 
       <NewsletterSection>
         <FooterHeading>Newsletter</FooterHeading>
-        <NewsletterInput type="email" placeholder="Email*" />
-        <SubmitButton>Submit</SubmitButton>
+        <NewsletterInput 
+          type="email" 
+          placeholder="Email*" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+        />
+        {error && <p style={{ color: 'red', fontSize: '14px' }}>{error}</p>}
+        <SubmitButton onClick={handleSubmit}>Submit</SubmitButton>
       </NewsletterSection>
 
       <FooterBottom>

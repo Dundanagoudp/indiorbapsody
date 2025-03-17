@@ -24,7 +24,14 @@ export const FooterContent = styled.div`
 
 export const FooterSection = styled.div`
   flex: 1;
-  margin: ${theme.spacing(2)};
+  gap: ${theme.spacing(4)};
+  margin: ${theme.spacing(3)} 0;
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing(2)};
+  text-decoration: none;
+
+  
 
   @media (max-width: ${theme.breakpoints.tablet}) {
     margin-bottom: ${theme.spacing(3)};

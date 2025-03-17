@@ -7,15 +7,15 @@ export const BannerContainer = styled.div`
   justify-content: space-between;
   background-color: ${theme.colors.Banner};
   padding: ${theme.spacing(6)} ${theme.spacing(30)};
-  min-height: 500px;
+  min-height: 30vh;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
-    flex-direction: column-reverse; /* Image comes below on mobile */
+    flex-direction: column-reverse;
     padding: ${theme.spacing(4)} ${theme.spacing(6)};
   }
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    padding: ${theme.spacing(5)} ${theme.spacing(3)};
+    padding: ${theme.spacing(3)};
   }
 `;
 
@@ -32,11 +32,12 @@ export const LeftSection = styled.div`
     padding-right: 0;
     text-align: center;
   }
-    @media (max-width: ${theme.breakpoints.mobile}) {
-      text-align: left;
-      align-items: left;
-      margin-top: ${theme.spacing(4)};
-    }
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    text-align: left;
+    align-items: flex-start;
+    margin-top: ${theme.spacing(4)};
+  }
 `;
 
 export const RightSection = styled.div`
@@ -53,10 +54,10 @@ export const RightSection = styled.div`
 export const BannerImage = styled.img`
   max-width: 100%;
   height: auto;
-  width: 450px;
+  width: 28vw;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
-    width: 400px;
+    width: 25vw;
   }
 
   @media (max-width: ${theme.breakpoints.mobile}) {
@@ -65,7 +66,7 @@ export const BannerImage = styled.img`
 `;
 
 export const BannerContent = styled.div`
-  max-width: 500px;
+  max-width: 30vw;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
     max-width: 100%;
@@ -73,53 +74,31 @@ export const BannerContent = styled.div`
 `;
 
 export const BannerHeading = styled.h1`
-  font-size: 48px;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-family: ${theme.fonts.heading};
+  font-weight: 400;
   color: ${theme.colors.text};
   margin-bottom: ${theme.spacing(2)};
-
-  @media (max-width: ${theme.breakpoints.tablet}) {
-    font-size: 36px;
-  }
-
-  @media (max-width: ${theme.breakpoints.mobile}) {
-    font-size: 28px;
-  }
 `;
 
 export const BannerSubheading = styled.h2`
-  font-size: 32px;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   font-family: ${theme.fonts.heading};
+  font-weight: 400;
   color: ${theme.colors.text};
   margin-bottom: ${theme.spacing(2)};
-
-  @media (max-width: ${theme.breakpoints.tablet}) {
-    font-size: 28px;
-  }
-
-  @media (max-width: ${theme.breakpoints.mobile}) {
-    font-size: 24px;
-  }
 `;
 
 export const ComingSoonText = styled.p`
-  font-size: 24px;
+  font-size: clamp(1rem, 3vw, 1.5rem);
   font-family: ${theme.fonts.body};
   color: ${theme.colors.text};
   margin-bottom: ${theme.spacing(2)};
-
-  @media (max-width: ${theme.breakpoints.tablet}) {
-    font-size: 20px;
-  }
-
-  @media (max-width: ${theme.breakpoints.mobile}) {
-    font-size: 18px;
-  }
 `;
 
 export const StoreLinksContainer = styled.div`
   display: flex;
-  gap: ${theme.spacing(3)};
+  gap: ${theme.spacing(2)};
   justify-content: flex-start;
   margin-top: ${theme.spacing(3)};
 
@@ -128,9 +107,7 @@ export const StoreLinksContainer = styled.div`
   }
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    // gap: ${theme.spacing(2)};
-    align-items: left;
-    
+    align-items: flex-start;
   }
 `;
 
@@ -139,15 +116,15 @@ export const StoreLink = styled.a`
 `;
 
 export const StoreImage = styled.img`
-  width: 140px;
+  width: 10vw;
   height: auto;
-  border-radius: 4px;
+  border-radius: 0.25em;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
-    width: 120px;
+    width: 30vw;
   }
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    width: 100px;
+    width: 28vw;
   }
 `;
