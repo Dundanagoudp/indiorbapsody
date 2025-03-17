@@ -57,7 +57,7 @@ export const BannerImage = styled.img`
   width: 28vw;
 
   @media (max-width: ${theme.breakpoints.tablet}) {
-    width: 25vw;
+    width: 70%;
   }
 
   @media (max-width: ${theme.breakpoints.mobile}) {

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   FooterContainer,
   FooterContent,
@@ -30,7 +31,6 @@ const Footer = () => {
       return;
     }
     setError("");
-    // Handle newsletter submission logic here
     alert("Newsletter subscribed successfully!");
   };
 
@@ -38,12 +38,12 @@ const Footer = () => {
     <FooterContainer>
       <FooterContent>
         <FooterSection>
-          <LogoContainer>
+          <LogoContainer as={Link} to="/">
             <LogoImage src={Logo} alt="Logo" />
           </LogoContainer>
         </FooterSection>
 
-        <FooterSection >
+        <FooterSection>
           <FooterHeading>Quick Links</FooterHeading>
           <FooterLink href="/about">About us</FooterLink>
           <FooterLink href="/policies">Policies</FooterLink>

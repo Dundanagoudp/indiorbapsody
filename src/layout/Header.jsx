@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
@@ -19,8 +19,18 @@ import Logo from "../assets/logo.jpg";
 const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
+
+  // Update active tab based on the current route
+  useEffect(() => {
+    if (location.pathname === "/") {
+      setActiveTab("Home");
+    } else if (location.pathname === "/about") {
+      setActiveTab("About us");
+    }
+  }, [location]);
 
   return (
     <>
@@ -33,10 +43,14 @@ const Header = () => {
 
         <Nav>
           <NavItem active={activeTab === "Home"}>
-            <Link to="/" onClick={() => setActiveTab("Home")} style={{ textDecoration: "none" }}>Home</Link>
+            <Link to="/" onClick={() => setActiveTab("Home")} style={{ textDecoration: "none" }}>
+              Home
+            </Link>
           </NavItem>
           <NavItem active={activeTab === "About us"}>
-            <Link to="/about" onClick={() => setActiveTab("About us")} style={{ textDecoration: "none" }}>About us</Link>
+            <Link to="/about" onClick={() => setActiveTab("About us")} style={{ textDecoration: "none" }}>
+              About us
+            </Link>
           </NavItem>
         </Nav>
 
@@ -67,10 +81,28 @@ const Header = () => {
               <IoClose size={32} onClick={toggleMenu} />
               <MobileMenu>
                 <NavItem active={activeTab === "Home"}>
-                  <Link to="/" onClick={() => { setActiveTab("Home"); toggleMenu(); }} style={{ textDecoration: "none" }}>Home</Link>
+                  <Link
+                    to="/"
+                    onClick={() => {
+                      setActiveTab("Home");
+                      toggleMenu();
+                    }}
+                    style={{ textDecoration: "none" }}
+                  >
+                    Home
+                  </Link>
                 </NavItem>
                 <NavItem active={activeTab === "About us"}>
-                  <Link to="/about" onClick={() => { setActiveTab("About us"); toggleMenu(); }} style={{ textDecoration: "none" }}>About us</Link>
+                  <Link
+                    to="/about"
+                    onClick={() => {
+                      setActiveTab("About us");
+                      toggleMenu();
+                    }}
+                    style={{ textDecoration: "none" }}
+                  >
+                    About us
+                  </Link>
                 </NavItem>
               </MobileMenu>
             </MobileMenuContainer>
