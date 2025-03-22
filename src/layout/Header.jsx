@@ -24,6 +24,8 @@ const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
+  // isMobile will be true if window width is less than 768px (adjust the breakpoint as needed)
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const location = useLocation();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -45,6 +47,15 @@ const Header = () => {
       setLoading(false);
     }, 3000);
     return () => clearTimeout(timer);
+  }, []);
+
+  // Update isMobile state on window resize
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   // Function to handle navigation to external URLs
@@ -83,14 +94,17 @@ const Header = () => {
           </NavItem>
         </Nav>
 
-        <ButtonContainer>
-          <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/")}>
-            Login
-          </HeaderButton>
-          <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/signup")}>
-            Sign Up
-          </HeaderButton>
-        </ButtonContainer>
+        {/* Desktop Buttons: Render only if not mobile */}
+        {!isMobile && (
+          <ButtonContainer>
+            <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/")}>
+              Login
+            </HeaderButton>
+            <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/signup")}>
+              Sign Up
+            </HeaderButton>
+          </ButtonContainer>
+        )}
 
         <MenuIcon onClick={toggleMenu}>
           <FiMenu size={28} />
@@ -155,6 +169,17 @@ const Header = () => {
                   </Link>
                 </NavItem>
               </MobileMenu>
+              {/* Mobile Buttons: Only rendered inside the mobile menu */}
+              {isMobile && (
+                <ButtonContainer style={{ marginTop: "30px" }} >
+                  <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/")}>
+                    Login
+                  </HeaderButton>
+                  <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/signup")}>
+                    Sign Up
+                  </HeaderButton>
+                </ButtonContainer>
+              )}
             </MobileMenuContainer>
           </>
         )}

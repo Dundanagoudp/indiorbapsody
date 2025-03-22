@@ -12,11 +12,11 @@ import blog1 from '../../assets/b1.jpg';
 
 // Fallback data in case the API call fails or returns nothing
 const fallbackData = {
-  // Corrected: use blog1 directly instead of {blog1}
   bannerUrl: blog1,
   title: 'IoT + Mobile - The Power of Tech Union',
   date: '28 October 2024',
   subtitle: 'Internet of Things, Wireless Communication Network, Abstract Image Visual',
+  // Storing the blog paragraphs in an array for flexibility
   content: [
     `The CyberSpace Of Belonging (IoT) in a modern place tangibly links to computer networks, permitting 
      them to communicate as a group and handle data-driven requests. These empowered devices hold sensors, 
@@ -38,9 +38,13 @@ const BlogViewPage = () => {
   const [blogData, setBlogData] = useState(null);
 
   useEffect(() => {
+    // Example: If you have a route param (e.g., /blog/123), you could retrieve it via a router hook:
+    // const { id } = useParams();
+    // For now, we'll just demonstrate fetching a single blog from a sample endpoint.
+
     const fetchSingleBlog = async () => {
       try {
-        // Replace with your real API endpoint
+        // Replace with your real API endpoint for a single blog item:
         const response = await axios.get('https://your-api-endpoint.com/blog/123');
 
         // If the API returns valid data, use it; otherwise use fallback
@@ -59,7 +63,7 @@ const BlogViewPage = () => {
     fetchSingleBlog();
   }, []);
 
-  // If data hasn't loaded yet, show a simple loader
+  // If data hasn't loaded yet, you can show a simple loader
   if (!blogData) {
     return <p>Loading blog...</p>;
   }
