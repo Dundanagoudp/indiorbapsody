@@ -9,6 +9,7 @@ import About from "./components/aboutsection/About";
 import Policies from "./components/policiessection/Policies";
 import DeleteUser from "./components/deleteuserpage/DeleteUser";
 import Blogviewpage from "./components/blogsection/blogviewpage";
+import Blog from "./components/blogsection/Blog";
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
              <Route path="/about" element={<About />} />
              <Route path="/policies" element={<Policies/>} />
              <Route path="/delete-user" element={<DeleteUser/>} />
+             <Route path="/blog" element={<Blog/>} />
              <Route path="/blogviewpage" element={<Blogviewpage/>} />
           </Route>
         </Routes>

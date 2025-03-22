@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
+
 import {
   HeaderContainer,
   LogoContainer,
@@ -17,10 +18,12 @@ import {
   HeaderButton,
 } from "./Header.styles";
 import Logo from "../assets/logo.jpg";
+import Loader from "../components/loader/ApiLoders";
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
   const location = useLocation();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -31,13 +34,27 @@ const Header = () => {
       setActiveTab("Home");
     } else if (location.pathname === "/about") {
       setActiveTab("About us");
+    } else if (location.pathname === "/blog") {
+      setActiveTab("Blogs");
     }
   }, [location]);
+
+  // Show loader for 3 seconds on mount
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Function to handle navigation to external URLs
   const handleNavigation = (url) => {
     window.location.href = url;
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -50,41 +67,27 @@ const Header = () => {
 
         <Nav>
           <NavItem active={activeTab === "Home"}>
-            <Link
-              to="/"
-              onClick={() => setActiveTab("Home")}
-              style={{ textDecoration: "none" }}
-            >
+            <Link to="/" onClick={() => setActiveTab("Home")} style={{ textDecoration: "none" }}>
               Home
             </Link>
           </NavItem>
           <NavItem active={activeTab === "About us"}>
-            <Link
-              to="/about"
-              onClick={() => setActiveTab("About us")}
-              style={{ textDecoration: "none" }}
-            >
+            <Link to="/about" onClick={() => setActiveTab("About us")} style={{ textDecoration: "none" }}>
               About us
+            </Link>
+          </NavItem>
+          <NavItem active={activeTab === "Blogs"}>
+            <Link to="/blog" onClick={() => setActiveTab("Blogs")} style={{ textDecoration: "none" }}>
+              Blogs
             </Link>
           </NavItem>
         </Nav>
 
-        {/* Button Container */}
         <ButtonContainer>
-          <HeaderButton
-            onClick={() =>
-              handleNavigation("https://salesdashboard.indigorhapsody.com/")
-            }
-          >
+          <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/")}>
             Login
           </HeaderButton>
-          <HeaderButton
-            onClick={() =>
-              handleNavigation(
-                "https://salesdashboard.indigorhapsody.com/signup"
-              )
-            }
-          >
+          <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/signup")}>
             Sign Up
           </HeaderButton>
         </ButtonContainer>
@@ -137,6 +140,18 @@ const Header = () => {
                     style={{ textDecoration: "none" }}
                   >
                     About us
+                  </Link>
+                </NavItem>
+                <NavItem active={activeTab === "Blogs"}>
+                  <Link
+                    to="/blog"
+                    onClick={() => {
+                      setActiveTab("Blogs");
+                      toggleMenu();
+                    }}
+                    style={{ textDecoration: "none" }}
+                  >
+                    Blogs
                   </Link>
                 </NavItem>
               </MobileMenu>
