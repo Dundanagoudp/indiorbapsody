@@ -8,6 +8,7 @@ import Applayout from "./Applayout/AppLayout";
 import About from "./components/aboutsection/About";
 import Policies from "./components/policiessection/Policies";
 import DeleteUser from "./components/deleteuserpage/DeleteUser";
+import Blogviewpage from "./components/blogsection/blogviewpage";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
              <Route path="/about" element={<About />} />
              <Route path="/policies" element={<Policies/>} />
              <Route path="/delete-user" element={<DeleteUser/>} />
+             <Route path="/blogviewpage" element={<Blogviewpage/>} />
           </Route>
         </Routes>
       </Router>
