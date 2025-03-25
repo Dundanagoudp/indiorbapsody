@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import Pagination from '@mui/material/Pagination';
-
-// Import your styled components
+import { useNavigate } from 'react-router-dom';
 import {
   BlogContainer,
   BlogTitle,
@@ -11,101 +9,97 @@ import {
   CardImage,
   CardTitle,
   CardDate,
-  CardReadMore
+  CardReadMore,
+  CardDescription
 } from './Blog.styles';
-
-// Import your fallback images (the ones you mentioned)
-import blog from '../../assets/b1.jpg';
-import blog2 from '../../assets/b2.png';
-import blog3 from '../../assets/b3.png';
+import { getBlogs } from '../../services/Blog';
 
 const Blog = () => {
-  // State to store fetched blogs (or fallback data)
   const [blogs, setBlogs] = useState([]);
-  // State for pagination
   const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
   const itemsPerPage = 3;
-
-  // Define your fallback data
-  const fallbackData = [
-    {
-      id: 1,
-      imageUrl: blog,
-      title: 'Why Your Business Needs an Information Security Audit – and How to Get Started',
-      date: '30 October 2024',
-    },
-    {
-      id: 2,
-      imageUrl: blog2,
-      title: 'What Will Win: Traditional Marketing vs. Digital Marketing',
-      date: '12 March 2024',
-    },
-    {
-      id: 3,
-      imageUrl: blog3,
-      title: 'What Is IoT',
-      date: '28 October 2024',
-    },
-  ];
+  const titleLimit = 50; // Character limit for title
 
   useEffect(() => {
     const fetchBlogs = async () => {
       try {
-        // Replace with your real API endpoint
-        const response = await axios.get('https://your-api-endpoint.com/blogs');
-
-        // If API returns data, set it; otherwise, use fallback
-        if (response.data && response.data.length > 0) {
-          setBlogs(response.data);
+        const data = await getBlogs();
+        if (data && data.length > 0) {
+          setBlogs(data);
         } else {
-          setBlogs(fallbackData);
+          setBlogs([]);
         }
       } catch (error) {
-        console.error('Error fetching blogs:', error);
-        // If there's an error, show fallback data
-        setBlogs(fallbackData);
+        setBlogs([]);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchBlogs();
   }, []);
 
-  // Handle page change
-  const handleChange = (event, value) => {
+  const handlePageChange = (event, value) => {
     setPage(value);
   };
 
-  // Calculate current page's items
+  const handleReadMore = (id) => {
+    navigate(`/blog/${id}`);
+  };
+
+  const truncateTitle = (title) => {
+    return title.length > titleLimit ? `${title.substring(0, titleLimit)}...` : title;
+  };
+
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const currentBlogs = blogs.slice(startIndex, endIndex);
 
+  if (loading) return <p>Loading blogs...</p>;
+
   return (
     <BlogContainer>
       <BlogTitle>Blog Posts</BlogTitle>
-
       <BlogCardWrapper>
-        {currentBlogs.map((blogItem) => (
-          <BlogCard key={blogItem.id}>
-            <CardImage
-              src={blogItem.imageUrl}
-              alt={blogItem.title}
-            />
-            <CardTitle>{blogItem.title}</CardTitle>
-            <CardDate>{blogItem.date}</CardDate>
-            <CardReadMore href="/blogviewpage">READ MORE</CardReadMore>
-          </BlogCard>
-        ))}
+        {currentBlogs.length > 0 ? (
+          currentBlogs.map((blog) => (
+            <BlogCard key={blog._id}>
+              <CardImage 
+                src={blog.image} 
+                alt={blog.title}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = 'https://via.placeholder.com/300x200?text=Blog+Image';
+                }}
+              />
+              <CardTitle title={blog.title}>
+                {truncateTitle(blog.title)}
+              </CardTitle>
+              <CardDescription>
+                {blog.description.substring(0, 100)}...
+              </CardDescription>
+              <CardDate>Status: {blog.status}</CardDate>
+              <CardReadMore onClick={() => handleReadMore(blog._id)}>
+                READ MORE
+              </CardReadMore>
+            </BlogCard>
+          ))
+        ) : (
+          <p>No blog posts available</p>
+        )}
       </BlogCardWrapper>
 
-      {/* Material UI Pagination */}
-      <Pagination
-        count={Math.ceil(blogs.length / itemsPerPage)}
-        page={page}
-        onChange={handleChange}
-        color="primary"
-        style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
-      />
+      {blogs.length > itemsPerPage && (
+        <Pagination
+          count={Math.ceil(blogs.length / itemsPerPage)}
+          page={page}
+          onChange={handlePageChange}
+          color="primary"
+          style={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
+        />
+      )}
     </BlogContainer>
   );
 };

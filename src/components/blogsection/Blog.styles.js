@@ -86,3 +86,16 @@ export const CardReadMore = styled.a`
     text-decoration: underline;
   }
 `;
+export const LoadingMessage = styled.p`
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: #666;
+`;
+
+export const CardDescription = styled.p`
+  font-size: 14px;
+  color: #555;
+  margin: 8px 0;
+`;
+
