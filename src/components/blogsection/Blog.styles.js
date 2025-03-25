@@ -71,7 +71,7 @@ export const CardTitle = styled.h3`
 
 export const CardDate = styled.p`
   font-size: 0.9rem;
-  color: ${theme.colors.warning};
+  color: ${theme.colors.black};
   margin-top: ${theme.spacing(1)};
 `;
 
@@ -95,7 +95,8 @@ export const LoadingMessage = styled.p`
 
 export const CardDescription = styled.p`
   font-size: 14px;
-  color: #555;
+  color: ${theme.colors.black};
   margin: 8px 0;
+
 `;
 
