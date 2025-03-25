@@ -24,24 +24,23 @@ const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  // isMobile will be true if window width is less than 768px (adjust the breakpoint as needed)
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const location = useLocation();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Update active tab based on the current route
   useEffect(() => {
-    if (location.pathname === "/") {
+    const path = location.pathname;
+    
+    if (path === "/") {
       setActiveTab("Home");
-    } else if (location.pathname === "/about") {
+    } else if (path.startsWith("/about") || path.startsWith("/policies") || path.startsWith("/delete-user")) {
       setActiveTab("About us");
-    } else if (location.pathname === "/blog") {
+    } else if (path.startsWith("/blog")) {
       setActiveTab("Blogs");
     }
   }, [location]);
 
-  // Show loader for 3 seconds on mount
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -49,7 +48,6 @@ const Header = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Update isMobile state on window resize
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth < 768);
@@ -58,7 +56,6 @@ const Header = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Function to handle navigation to external URLs
   const handleNavigation = (url) => {
     window.location.href = url;
   };
@@ -94,7 +91,6 @@ const Header = () => {
           </NavItem>
         </Nav>
 
-        {/* Desktop Buttons: Render only if not mobile */}
         {!isMobile && (
           <ButtonContainer>
             <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/")}>
@@ -111,7 +107,6 @@ const Header = () => {
         </MenuIcon>
       </HeaderContainer>
 
-      {/* Mobile Menu with Animation */}
       <AnimatePresence>
         {menuOpen && (
           <>
@@ -169,9 +164,8 @@ const Header = () => {
                   </Link>
                 </NavItem>
               </MobileMenu>
-              {/* Mobile Buttons: Only rendered inside the mobile menu */}
               {isMobile && (
-                <ButtonContainer style={{ marginTop: "30px" }} >
+                <ButtonContainer style={{ marginTop: "30px" }}>
                   <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/")}>
                     Login
                   </HeaderButton>
