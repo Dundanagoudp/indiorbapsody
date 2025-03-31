@@ -29,12 +29,12 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoImage = styled.img`
-  width: ${theme.spacing(25)};
+  width: ${theme.spacing(21)};
   height: ${theme.spacing(8)};
   object-fit: contain;
 
   @media (max-width: ${theme.breakpoints.mobile}) {
-    width: ${theme.spacing(20)};
+    width: ${theme.spacing(25)};
     height: ${theme.spacing(6)};
   }
 `;

@@ -17,7 +17,7 @@ import {
   ButtonContainer,
   HeaderButton,
 } from "./Header.styles";
-import Logo from "../assets/logo.jpg";
+import Logo from "../assets/logo2.jpeg";
 import Loader from "../components/loader/ApiLoders";
 
 const Header = () => {

@@ -10,9 +10,9 @@ import {
   DesignImage,
 } from '../design/Designs.styles';
 
-import TrendyDesigns1 from '../../assets/d1.png';
-import TrendyDesigns2 from '../../assets/d2.png';
-import TrendyDesigns3 from '../../assets/d3.png';
+import TrendyDesigns1 from '../../assets/design1.png';
+import TrendyDesigns2 from '../../assets/design2.png';
+import TrendyDesigns3 from '../../assets/design3.png';
 import googlePlayImage from '../../assets/googlePlayImage.png';
 import appStoreImage from '../../assets/appStoreImage.png';
 

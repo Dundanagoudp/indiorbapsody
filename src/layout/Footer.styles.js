@@ -3,8 +3,12 @@ import theme from '../theme/Theme';
 
 export const FooterContainer = styled.footer`
   background-color: ${theme.colors.background};
-  padding: ${theme.spacing(5)} 0;
+  // padding: ${theme.spacing(5)} 0;
   text-align: center;
+
+  @media (max-width: ${theme.breakpoints.mobile}) {
+    padding: ${theme.spacing(3)} 0;
+  }
 `;
 
 export const FooterContent = styled.div`

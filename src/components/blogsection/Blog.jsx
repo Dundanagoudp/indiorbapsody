@@ -20,7 +20,7 @@ const Blog = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
   const itemsPerPage = 3;
-  const titleLimit = 50; // Character limit for title
+  const titleLimit = 50; 
 
   useEffect(() => {
     const fetchBlogs = async () => {
