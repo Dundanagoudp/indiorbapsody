@@ -50,7 +50,7 @@ const BlogViewPage = () => {
         }}
       />
       <BlogTitle>{blogData.title}</BlogTitle>
-      <BlogDate>Status: {blogData.status}</BlogDate>
+      {/* <BlogDate>Status: {blogData.status}</BlogDate> */}
       <BlogContent>
         <p>{blogData.description}</p>
       </BlogContent>
