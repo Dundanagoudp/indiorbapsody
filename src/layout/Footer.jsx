@@ -13,7 +13,7 @@ import {
   LogoContainer,
   LogoText
 } from '../layout/Footer.styles';
-import Logo from "../assets/logo.jpg";
+import Logo from "../assets/logo2.jpeg";
 import { LogoImage } from './Header.styles';
 
 const Footer = () => {

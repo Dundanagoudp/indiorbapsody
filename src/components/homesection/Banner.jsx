@@ -16,7 +16,7 @@ import {
 // Image imports
 import googlePlayImage from '../../assets/googlePlayImage.png';
 import appStoreImage from '../../assets/appStoreImage.png';
-import rightBannerImage from '../../assets/banner.png';
+import rightBannerImage from '../../assets/banner2.png';
 
 const Banner = () => {
   return (

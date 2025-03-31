@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FiMenu } from "react-icons/fi";
 import { IoClose } from "react-icons/io5";
 import { motion, AnimatePresence } from "framer-motion";
+
 import {
   HeaderContainer,
   LogoContainer,
@@ -16,28 +17,52 @@ import {
   ButtonContainer,
   HeaderButton,
 } from "./Header.styles";
-import Logo from "../assets/logo.jpg";
+import Logo from "../assets/logo2.jpeg";
+import Loader from "../components/loader/ApiLoders";
 
 const Header = () => {
   const [activeTab, setActiveTab] = useState("Home");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
   const location = useLocation();
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // Update active tab based on the current route
   useEffect(() => {
-    if (location.pathname === "/") {
+    const path = location.pathname;
+    
+    if (path === "/") {
       setActiveTab("Home");
-    } else if (location.pathname === "/about") {
+    } else if (path.startsWith("/about") || path.startsWith("/policies") || path.startsWith("/delete-user")) {
       setActiveTab("About us");
+    } else if (path.startsWith("/blog")) {
+      setActiveTab("Blogs");
     }
   }, [location]);
 
-  // Function to handle navigation to external URLs
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const handleNavigation = (url) => {
     window.location.href = url;
   };
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -50,51 +75,38 @@ const Header = () => {
 
         <Nav>
           <NavItem active={activeTab === "Home"}>
-            <Link
-              to="/"
-              onClick={() => setActiveTab("Home")}
-              style={{ textDecoration: "none" }}
-            >
+            <Link to="/" onClick={() => setActiveTab("Home")} style={{ textDecoration: "none" }}>
               Home
             </Link>
           </NavItem>
           <NavItem active={activeTab === "About us"}>
-            <Link
-              to="/about"
-              onClick={() => setActiveTab("About us")}
-              style={{ textDecoration: "none" }}
-            >
+            <Link to="/about" onClick={() => setActiveTab("About us")} style={{ textDecoration: "none" }}>
               About us
+            </Link>
+          </NavItem>
+          <NavItem active={activeTab === "Blogs"}>
+            <Link to="/blog" onClick={() => setActiveTab("Blogs")} style={{ textDecoration: "none" }}>
+              Blogs
             </Link>
           </NavItem>
         </Nav>
 
-        {/* Button Container */}
-        <ButtonContainer>
-          <HeaderButton
-            onClick={() =>
-              handleNavigation("https://salesdashboard.indigorhapsody.com/")
-            }
-          >
-            Login
-          </HeaderButton>
-          <HeaderButton
-            onClick={() =>
-              handleNavigation(
-                "https://salesdashboard.indigorhapsody.com/signup"
-              )
-            }
-          >
-            Sign Up
-          </HeaderButton>
-        </ButtonContainer>
+        {!isMobile && (
+          <ButtonContainer>
+            <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/")}>
+              Login
+            </HeaderButton>
+            <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/signup")}>
+              Sign Up
+            </HeaderButton>
+          </ButtonContainer>
+        )}
 
         <MenuIcon onClick={toggleMenu}>
           <FiMenu size={28} />
         </MenuIcon>
       </HeaderContainer>
 
-      {/* Mobile Menu with Animation */}
       <AnimatePresence>
         {menuOpen && (
           <>
@@ -139,7 +151,29 @@ const Header = () => {
                     About us
                   </Link>
                 </NavItem>
+                <NavItem active={activeTab === "Blogs"}>
+                  <Link
+                    to="/blog"
+                    onClick={() => {
+                      setActiveTab("Blogs");
+                      toggleMenu();
+                    }}
+                    style={{ textDecoration: "none" }}
+                  >
+                    Blogs
+                  </Link>
+                </NavItem>
               </MobileMenu>
+              {isMobile && (
+                <ButtonContainer style={{ marginTop: "30px" }}>
+                  <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/")}>
+                    Login
+                  </HeaderButton>
+                  <HeaderButton onClick={() => handleNavigation("https://salesdashboard.indigorhapsody.com/signup")}>
+                    Sign Up
+                  </HeaderButton>
+                </ButtonContainer>
+              )}
             </MobileMenuContainer>
           </>
         )}
