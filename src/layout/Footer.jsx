@@ -52,7 +52,7 @@ const Footer = () => {
 
         <FooterSection>
           <FooterHeading>Contact</FooterHeading>
-          <FooterLink href="mailto:contact@sveccha.in">Email : contact@sveccha.in</FooterLink>
+          <FooterLink href="mailto:contact@sveccha.in">Email :  info@indigorhapsody.com</FooterLink>
         </FooterSection>
       </FooterContent>
 
