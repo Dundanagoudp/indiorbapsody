@@ -24,7 +24,7 @@ const Banner = () => {
       {/* Left Section - Text Content */}
       <LeftSection>
         <BannerContent>
-          <BannerHeading>Sunshine<br></br> State Of Mind</BannerHeading>
+          <BannerHeading>Sunshine<br></br>State Of Mind</BannerHeading>
           <BannerSubheading>Coming Soon!</BannerSubheading>
           <ComingSoonText>Shop Now</ComingSoonText>
 
