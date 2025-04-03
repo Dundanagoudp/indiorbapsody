@@ -80,7 +80,7 @@ const Blog = () => {
               <CardDescription>
                 {blog.description.substring(0, 100)}...
               </CardDescription>
-              <CardDate>Status: {blog.status}</CardDate>
+              {/* <CardDate>Status: {blog.status}</CardDate> */}
               <CardReadMore onClick={() => handleReadMore(blog._id)}>
                 READ MORE
               </CardReadMore>
