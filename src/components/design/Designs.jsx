@@ -18,9 +18,9 @@ import appStoreImage from '../../assets/appStoreImage.png';
 
 const Design = () => {
   const designs = [
-    { img: TrendyDesigns1, text: "Explore Modern & Trendy Designs", reverse: false },
-    { img: TrendyDesigns2, text: "Find the Perfect Design for You", reverse: true },
-    { img: TrendyDesigns3, text: "Create Stunning Visuals with Ease", reverse: false },
+    { img: TrendyDesigns1, text: "Focus on Quality & Long-Lasting Designs", reverse: false },
+    { img: TrendyDesigns2, text: "Exclusive Curated Collections", reverse: true },
+    { img: TrendyDesigns3, text: "Curate Your Closet.Continously", reverse: false },
   ];
 
   return (
