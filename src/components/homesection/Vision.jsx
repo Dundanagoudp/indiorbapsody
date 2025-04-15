@@ -11,10 +11,8 @@ const Vision = () => {
   return (
     <div style={{ backgroundColor: '#E6DCDC' }}>
       <VisionContainer>
-        <VisionHeading>Vision</VisionHeading>
-        <VisionText>
-          Our Vision Is To Be The Premier Platform That Celebrates The Artistry Of Fashion Designers Worldwide.
-        </VisionText>
+  
+    
 
         <MissionHeading>Mission</MissionHeading>
         <MissionText>
