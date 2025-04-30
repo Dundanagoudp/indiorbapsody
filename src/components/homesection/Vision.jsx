@@ -14,7 +14,7 @@ const Vision = () => {
   
     
 
-        <MissionHeading>Mission</MissionHeading>
+        {/* <MissionHeading>Mission</MissionHeading> */}
         <MissionText>
           Indigo Rhapsody is an app-based marketplace designed for consciously crafted fashion and design. 
           It offers a curation of works from visionary fashion designers, brands, and artisans committed 
