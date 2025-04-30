@@ -12,7 +12,6 @@ const Vision = () => {
     <div style={{ backgroundColor: '#E6DCDC' }}>
       <VisionContainer>
   
-    
 
         {/* <MissionHeading>Mission</MissionHeading> */}
         <MissionText>

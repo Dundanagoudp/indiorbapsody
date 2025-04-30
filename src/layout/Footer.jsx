@@ -11,10 +11,9 @@ import {
   SubmitButton,
   FooterBottom,
   LogoContainer,
-  LogoText
-} from '../layout/Footer.styles';
+  LogoImage
+} from './Footer.styles';
 import Logo from "../assets/logo2.jpeg";
-import { LogoImage } from './Header.styles';
 
 const Footer = () => {
   const [email, setEmail] = useState("");
