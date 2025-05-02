@@ -136,7 +136,7 @@ const Policies = () => {
       <Section>
         <SectionTitle>1. Introduction</SectionTitle>
         <Paragraph>
-          1.1 Welcome to Indigo Rhapsody.in ("the Website"). These Terms and Conditions ("Terms") govern your use of the Website and the services offered by Indigo Rhapsody.
+          1.1 Welcome to Indigo Rhapsody.in ("indigorhapsody.com"). These Terms and Conditions ("Terms") govern your use of the Website and the services offered by Indigo Rhapsody.
         </Paragraph>
         <Paragraph>1.2 By accessing and using the Website, you agree to be bound by these Terms.</Paragraph>
         <Paragraph>
