@@ -143,7 +143,7 @@ const Policies = () => {
           1.3 Except where additional terms and conditions are provided, which are product specific, these Terms shall supersede all previous representations, understandings, arrangements or agreements.
         </Paragraph>
         <Paragraph>
-          1.4 If you have any queries about the Terms, various policies, or have any comments, suggestions, or grievances, please mail us your query at <a href="mailto:contact@sveccha.in">contact@sveccha.in</a>.
+          1.4 If you have any queries about the Terms, various policies, or have any comments, suggestions, or grievances, please mail us your query at <a href="info@indigorhapsody.com">info@indigorhapsody.com</a>.
         </Paragraph>
       </Section>
 
@@ -186,7 +186,7 @@ const Policies = () => {
 
       <Section>
         <SectionTitle>7. Order Cancellation</SectionTitle>
-        <Paragraph>7.1 If you wish to cancel your order, write to us within 24 hours at <a href="mailto:helpdesk@indigorhapsody.in">helpdesk@indigorhapsody.in</a>.</Paragraph>
+        <Paragraph>7.1 If you wish to cancel your order, write to us within 24 hours at <a href="mailto:info@indigorhapsody.com">info@indigorhapsody.com</a>.</Paragraph>
       </Section>
 
       <Section>
@@ -206,7 +206,7 @@ const Policies = () => {
 
       <Section>
         <SectionTitle>11. Contact</SectionTitle>
-        <Paragraph>11.1 For any queries, contact us at <a href="mailto:contact@sveccha.in">contact@sveccha.in</a>.</Paragraph>
+        <Paragraph>11.1 For any queries, contact us at <a href="mailto:info@indigorhapsody.com">info@indigorhapsody.com</a>.</Paragraph>
       </Section>
     </PoliciesContainer>
   );
